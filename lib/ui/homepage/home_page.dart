@@ -5,7 +5,9 @@ import 'package:local_event_app/styleguide.dart';
 import 'package:provider/provider.dart';
 
 import '../../category/category.dart';
+import '../../category/event.dart';
 import 'category_widget.dart';
+import 'event_widget.dart';
 import 'home_page_background.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,7 +20,8 @@ class HomePage extends StatelessWidget {
         create: (_) => AppState(),
         child: Stack(
           children: [
-            HomePageBackground(screenHeight: MediaQuery.of(context).size.height),
+            HomePageBackground(
+                screenHeight: MediaQuery.of(context).size.height),
             SafeArea(
               child: SingleChildScrollView(
                 child: Column(
@@ -50,24 +53,38 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: Text(
-                        "What's Up!",
-                        style: whiteHeadingTextStyle,
-                      ),
-                    ),
+                        padding: const EdgeInsets.symmetric(horizontal: 32),
+                        child: Text(
+                          "What's Up!",
+                          style: whiteHeadingTextStyle,
+                        )),
                     const SizedBox(
                       height: 10,
                     ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          for (final category in categories)
-                            CategoryWidget(category: category),
-                        ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      // The changes given by the notifyListners is consumed by this Consumer and builds the whole row of category widgets and then updates the categories
+                      // Then category_widget.dart is rebuilt so it again checks the isSelected again and functions further
+                      child: Consumer<AppState>(
+                        builder: (context, value, _) => SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              for (final category in categories)
+                                CategoryWidget(category: category),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
+                    Consumer<AppState>(
+                      builder: (context, appState, _) =>
+                      Column(
+                        children: [
+                          for(final event in events.where((e) => e.categoryIds.contains(appState.selectedCategoryId))) EventWidget(event: event)
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
