@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:local_event_app/app_state.dart';
 import 'package:local_event_app/styleguide.dart';
+import 'package:local_event_app/ui/event_details/event_details_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../category/category.dart';
@@ -77,14 +78,24 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Consumer<AppState>(
-                      builder: (context, appState, _) =>
-                      Column(
-                        children: [
-                          for(final event in events.where((e) => e.categoryIds.contains(appState.selectedCategoryId))) EventWidget(event: event)
-                        ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Consumer<AppState>(
+                        builder: (context, appState, _) => Column(
+                          children: [
+                            for (final event in events.where((e) => e
+                                .categoryIds
+                                .contains(appState.selectedCategoryId)))
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => EventDetailsPage(event: event)));
+                                },
+                                child: EventWidget(event: event),
+                              ),
+                          ],
+                        ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
