@@ -6,7 +6,7 @@ import 'package:local_event_app/styleguide.dart';
 import '../../category/event.dart';
 
 class EventWidget extends StatelessWidget {
-  final Event event;
+  final Event1 event;
 
   const EventWidget({super.key, required this.event});
 

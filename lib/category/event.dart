@@ -1,8 +1,8 @@
-class Event {
+class Event1 {
   final String imagePath, title, description, location, duration, punchLine1, punchLine2;
   final List categoryIds, galleryImages;
 
-  Event(
+  Event1(
       {required this.imagePath,
       required this.title,
       required this.description,
@@ -14,7 +14,7 @@ class Event {
       required this.galleryImages});
 }
 
-final fiveKmRunEvent = Event(
+final fiveKmRunEvent = Event1(
     imagePath: "assets/event_images/5_km_downtown_run.jpeg",
     title: "5 Kilometer Downtown Run",
     description: "",
@@ -25,7 +25,7 @@ final fiveKmRunEvent = Event(
     galleryImages: [],
     categoryIds: [0, 2]);
 
-final cookingEvent = Event(
+final cookingEvent = Event1(
     imagePath: "assets/event_images/granite_cooking_class.jpeg",
     title: "Granite Cooking Class",
     description: "Guest list fill up fast so be sure to apply before handto secure a spot.",
@@ -36,7 +36,7 @@ final cookingEvent = Event(
     categoryIds: [0, 2],
     galleryImages: ["assets/event_images/cooking_1.jpeg", "assets/event_images/cooking_2.jpeg", "assets/event_images/cooking_3.jpeg"]);
 
-final musicConcert = Event(
+final musicConcert = Event1(
     imagePath: "assets/event_images/music_concert.jpeg",
     title: "Arijit Music Concert",
     description: "Listen to Arijit's latest compositions.",
@@ -47,7 +47,7 @@ final musicConcert = Event(
     galleryImages: ["assets/event_images/cooking_1.jpeg", "assets/event_images/cooking_2.jpeg", "assets/event_images/cooking_3.jpeg"],
     categoryIds: [0, 1]);
 
-final golfCompetition = Event(
+final golfCompetition = Event1(
     imagePath: "assets/event_images/golf_competition.jpeg",
     title: "Season 2 Golf Estate",
     description: "",
