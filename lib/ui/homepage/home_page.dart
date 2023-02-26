@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:local_event_app/app_state.dart';
 import 'package:local_event_app/styleguide.dart';
@@ -10,7 +9,7 @@ import '../../category/event.dart';
 import 'category_widget.dart';
 import 'event_widget.dart';
 import 'home_page_background.dart';
-
+// use FittedBox for text overflow
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
