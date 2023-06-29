@@ -3,7 +3,6 @@ import 'package:local_event_app/constants/custom_textfield.dart';
 import 'package:local_event_app/constants/global_variables.dart';
 import 'package:local_event_app/services/auth_services.dart';
 import 'package:local_event_app/ui/auth_screen/signup_screen.dart';
-import 'package:local_event_app/ui/homepage/home_page.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = '/login-screen';
