@@ -11,12 +11,17 @@ class HomePageBackground extends StatelessWidget {
     final themeData = Theme.of(context);
 
     // With the help of the clippath class we can give a container any irregular shape with want other than a normal rectangle or square or circle
-    return ClipPath(
-      clipper: BottomShapeClipper(),
-      child: Container(
-        height: screenHeight * 0.5,
-        color: themeData.primaryColor,
-      ),
+    return Column(
+      children: [
+        ClipPath(
+          clipper: BottomShapeClipper(),
+          child: Container(
+            height: screenHeight * 0.5,
+            color: themeData.primaryColor,
+          ),
+        ),
+        Text('here', style: TextStyle(fontSize: 40),),
+      ],
     );
   }
 }

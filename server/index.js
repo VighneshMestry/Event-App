@@ -10,7 +10,7 @@ const authRouter = require("./routes/auth");
 const app = express();
 // const PORT = process.env.PORT || 3000;
 const PORT = 3000;
-const DB = "mongodb+srv://vighnesh:Rotomacc%4027@cluster0.kvzn2wp.mongodb.net/?retryWrites=true&w=majority";
+const DB = "mongodb+srv://vighnesh:Rotomacc%4027@cluster0.kvzn2wp.mongodb.net/LocalEventApp?retryWrites=true&w=majority";
 
 
 app.use(express.json());

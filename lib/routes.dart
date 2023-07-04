@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:local_event_app/ui/auth_screen/login_screen.dart';
 import 'package:local_event_app/ui/auth_screen/signup_screen.dart';
+import 'package:local_event_app/ui/event_details/add_event.dart';
 import 'package:local_event_app/ui/homepage/home_page.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -19,6 +20,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const HomePage(),
+      );
+    case AddEvent.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const AddEvent(),
       );
     default:
       return MaterialPageRoute(

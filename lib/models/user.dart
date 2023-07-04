@@ -77,3 +77,15 @@ class User {
     );
   }
 }
+
+// {
+//   "title": "",
+//   "backgroundImage": "",
+//   "description": "",
+//   "location": "",
+//   "duration": "",
+//   "punchLine1": "",
+//   "punchLine2": "",
+//   "galleryImage": "",
+//   "category": "",
+// }
