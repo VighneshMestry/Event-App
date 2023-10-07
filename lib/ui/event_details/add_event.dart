@@ -19,6 +19,7 @@ class AddEvent extends StatefulWidget {
 
 class _AddEventState extends State<AddEvent> {
   String category = 'Music';
+  List<File> backgroundImage = [];
   List<File> images = [];
 
   final _addProductFormKey = GlobalKey<FormState>();
@@ -33,10 +34,12 @@ class _AddEventState extends State<AddEvent> {
 
   void addEvent() {
     if (_addProductFormKey.currentState!.validate() && images.isNotEmpty) {
+      print('Dart ui function executed');
+      print('eventTitleController.text');
       eventServices.addEvent(
         context: context,
         title: eventTitleController.text,
-        backgroundImage: images[0],
+        backgroundImage: backgroundImage[0],
         description: descriptionController.text,
         location: locationController.text,
         duration: durationController.text,
@@ -46,6 +49,14 @@ class _AddEventState extends State<AddEvent> {
         category: category,
       );
     }
+  }
+
+  selectBackgroundImages() async {
+    var res = await pickImages();
+
+    setState(() {
+      backgroundImage = res;
+    });
   }
 
   selectImages() async {
@@ -77,7 +88,7 @@ class _AddEventState extends State<AddEvent> {
             title: const Padding(
               padding: EdgeInsets.only(left: 75),
               child: Text(
-                'Add Product',
+                'Add Event',
                 style: TextStyle(color: Colors.black),
               ),
             )),
@@ -89,6 +100,70 @@ class _AddEventState extends State<AddEvent> {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                backgroundImage.isNotEmpty
+                    ? CarouselSlider(
+                        items: backgroundImage.map(
+                          (e) {
+                            return Builder(
+                              builder: (BuildContext context) => Image.file(
+                                e,
+                                fit: BoxFit.cover,
+                                height: 200,
+                              ),
+                            );
+                          },
+                        ).toList(),
+                        options: CarouselOptions(
+                          viewportFraction: 1,
+                          height: 200,
+                        ),
+                      )
+                    : GestureDetector(
+                        onTap: selectBackgroundImages,
+                        child: DottedBorder(
+                          borderType: BorderType.RRect,
+                          radius: const Radius.circular(10),
+                          dashPattern: const [10, 4],
+                          strokeCap: StrokeCap.round,
+                          child: Container(
+                            width: double.infinity,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(
+                                  Icons.folder_open_outlined,
+                                  size: 40,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  'Select Background Image',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.grey.shade400),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                const SizedBox(height: 30),
+                CustomTextField(
+                    controller: eventTitleController, hintText: 'Event title'),
+                const SizedBox(height: 10),
+                CustomTextField(
+                  controller: descriptionController,
+                  hintText: 'Description',
+                  maxLines: 5,
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -144,31 +219,19 @@ class _AddEventState extends State<AddEvent> {
                           ),
                         ),
                       ),
-                const SizedBox(
-                  height: 30,
-                ),
-                CustomTextField(
-                    controller: eventTitleController, hintText: 'Event title'),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomTextField(
-                    controller: descriptionController,
-                    hintText: 'Description',
-                    maxLines: 5),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 20),
                 CustomTextField(
                     controller: locationController, hintText: 'Location'),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 CustomTextField(
                     controller: durationController, hintText: 'Duration'),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
+                CustomTextField(
+                    controller: punchLine1Controller, hintText: 'Event Aim'),
+                const SizedBox(height: 10),
+                CustomTextField(
+                    controller: punchLine2Controller, hintText: 'Punch Line'),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: double.infinity,
                   child: DropdownButton(

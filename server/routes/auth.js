@@ -8,13 +8,16 @@ authRouter.post("/api/signup", async (req, res) => {
   try {
     const { email, name, password } = req.body;
 
+    console.log('signup');
     const existingUser = await User.findOne({ email: email });
+    console.log('signup');
 
     if (existingUser) {
       return res.status(400).json({ msg: "User already exists!" });
     }
 
     let user = new User({ name, email, password });
+    console.log('signup');
     user = await user.save();
     res.json(user);
   } catch (e) {

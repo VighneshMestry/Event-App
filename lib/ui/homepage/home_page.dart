@@ -94,25 +94,21 @@ class _HomePageState extends State<HomePage> {
                       child: Consumer<AppState>(
                         builder: (context, appState, _) => Column(
                           children: [
-                            for (final event in events.where(
-                              (e) => e.categoryIds
-                                  .contains(appState.selectedCategoryId),
-                            ))
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          EventDetailsPage(event: event)));
-                                },
-                                child: EventWidget(event: event),
-                              ),
+                            // for (final event in events.where(
+                            //   (e) => e.categoryIds
+                            //       .contains(appState.selectedCategoryId),
+                            // ))
+                            //   GestureDetector(
+                            //     onTap: () {
+                            //       Navigator.of(context).push(MaterialPageRoute(
+                            //           builder: (context) =>
+                            //               EventDetailsPage(event: event)));
+                            //     },
+                            //     child: EventWidget(event: event),
+                            //   ),
                           ],
                         ),
                       ),
-                    ),
-                    const Text(
-                      'HEre',
-                      style: TextStyle(fontSize: 40),
                     ),
                   ],
                 ),

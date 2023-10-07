@@ -27,6 +27,7 @@ class AuthService {
         type: '',
         token: '',
       );
+      print('done');
       http.Response res = await http.post(
         Uri.parse('$uri/api/signup'),
         headers: <String, String>{
@@ -34,6 +35,7 @@ class AuthService {
         },
         body: user.toJson(),
       );
+      print('done');
 
       if (res.statusCode == 200) {
         // ignore: use_build_context_synchronously

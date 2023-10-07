@@ -60,6 +60,7 @@ class Event {
   }
 
   String toJson() => json.encode(toMap());
+  
 
   factory Event.fromJson(String source) =>
       Event.fromMap(json.decode(source));

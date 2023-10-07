@@ -1,12 +1,12 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const auth = require("../middlewares/auth");
 const Event = require("../models/events");
 
 const authRouter = express.Router();
 
-authRouter.post("/api/add-event", auth, async (req, res) => {
+authRouter.post("/api/add-event", async (req, res) => {
+  console.log('last check');
   try {
+    console.log('api started');
     const {
       title,
       backgroundImage,
@@ -16,10 +16,10 @@ authRouter.post("/api/add-event", auth, async (req, res) => {
       punchLine1,
       punchLine2,
       galleryImage,
-      categorytitle,
+      category,
     } = req.body;
 
-    const event = new Event(
+    let event = new Event({
       title,
       backgroundImage,
       description,
@@ -28,12 +28,15 @@ authRouter.post("/api/add-event", auth, async (req, res) => {
       punchLine1,
       punchLine2,
       galleryImage,
-      categorytitle
+      category}
     );
-
+    console.log('api executed');
     event = await event.save();
     res.json(event);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
+
+
+module.exports = authRouter;
