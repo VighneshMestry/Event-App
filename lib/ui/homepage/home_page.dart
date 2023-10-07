@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:local_event_app/app_state.dart';
+import 'package:local_event_app/category/event.dart';
 import 'package:local_event_app/constants/global_variables.dart';
 import 'package:local_event_app/styleguide.dart';
 import 'package:local_event_app/ui/event_details/add_event.dart';
 import 'package:local_event_app/ui/event_details/event_details_page.dart';
+import 'package:local_event_app/ui/homepage/event_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../category/category.dart';
-import '../../category/event.dart';
 import 'category_widget.dart';
-import 'event_widget.dart';
 import 'home_page_background.dart';
 
 // use FittedBox for text overflow
@@ -94,18 +94,18 @@ class _HomePageState extends State<HomePage> {
                       child: Consumer<AppState>(
                         builder: (context, appState, _) => Column(
                           children: [
-                            // for (final event in events.where(
-                            //   (e) => e.categoryIds
-                            //       .contains(appState.selectedCategoryId),
-                            // ))
-                            //   GestureDetector(
-                            //     onTap: () {
-                            //       Navigator.of(context).push(MaterialPageRoute(
-                            //           builder: (context) =>
-                            //               EventDetailsPage(event: event)));
-                            //     },
-                            //     child: EventWidget(event: event),
-                            //   ),
+                            for (final event in events.where(
+                              (e) => e.categoryIds
+                                  .contains(appState.selectedCategoryId),
+                            ))
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          EventDetailsPage(event: event)));
+                                },
+                                child: EventWidget(event: event),
+                              ),
                           ],
                         ),
                       ),

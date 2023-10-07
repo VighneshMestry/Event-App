@@ -1,9 +1,9 @@
 const express = require("express");
 const Event = require("../models/events");
 
-const authRouter = express.Router();
+const eventRouter = express.Router();
 
-authRouter.post("/api/add-event", async (req, res) => {
+eventRouter.post("/api/add-event", async (req, res) => {
   console.log('last check');
   try {
     console.log('api started');
@@ -39,4 +39,4 @@ authRouter.post("/api/add-event", async (req, res) => {
 });
 
 
-module.exports = authRouter;
+module.exports = eventRouter;

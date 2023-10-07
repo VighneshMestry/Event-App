@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const authRouter = require("./routes/auth");
+const eventRouter = require("./routes/events")
 
 
 //INIT
@@ -15,6 +16,7 @@ const DB = "mongodb+srv://vighnesh:Rotomacc%4027@cluster0.kvzn2wp.mongodb.net/Lo
 
 app.use(express.json());
 app.use(authRouter);
+app.use(eventRouter);
 
 // Connections
 // here connect is a promise or future so here we should use await keyword 

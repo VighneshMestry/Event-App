@@ -22,21 +22,18 @@ class EventServices {
   }) async {
     // final userProvider = Provider.of<UserProvider>(context, listen: false);
     try {
-      print('Dart services function start');
       final cloudinary = CloudinaryPublic('du4li5gol', 'ubxsaabn');
       List<String> imageUrls = [];
       CloudinaryResponse response = await cloudinary.uploadFile(
           CloudinaryFile.fromFile(backgroundImage.path, folder: title));
 
       imageUrls.add(response.secureUrl);
-      print('Dart services function start');
       for (int i = 0; i < galleryImage.length; i++) {
         CloudinaryResponse res = await cloudinary.uploadFile(
             CloudinaryFile.fromFile(galleryImage[i].path, folder: title));
 
         imageUrls.add(res.secureUrl);
       }
-      print('Dart services images uploaded');
       Event event = Event(
         title: title,
         backgroundImage: imageUrls[0],
@@ -48,7 +45,6 @@ class EventServices {
         galleryImage: imageUrls,
         category: category,
       );
-      print('calling api from services');
       http.Response res = await http.post(
         Uri.parse('$uri/api/add-event'),
         headers: {
@@ -59,13 +55,13 @@ class EventServices {
       );
 
       if (res.statusCode == 200) {
-        print('Dart services function successful');
         // ignore: use_build_context_synchronously
-        showSnackBar(context, 'Product added Successfully');
+        showSnackBar(context, 'Event added Successfully');
         // ignore: use_build_context_synchronously
         Navigator.pop(context);
       } else {
-        print(res.statusCode);
+        // ignore: use_build_context_synchronously
+        showSnackBar(context, 'Error');
       }
       print('Dart services function end');
     } catch (e) {
